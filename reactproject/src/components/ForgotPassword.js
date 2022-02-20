@@ -28,7 +28,17 @@ export default function ForgotPassword() {
 
   return (
     <>
-      <Card>
+      <Card
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          alignSelf: "center",
+          marginTop: "30%",
+          marginLeft: "30%",
+          width: "500px",
+        }}
+        className="border-0"
+      >
         <Card.Body>
           <h2 className="text-center mb-4">Password Reset</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -38,11 +48,11 @@ export default function ForgotPassword() {
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <Button disabled={loading} className="w-100 mt-2" type="submit">
               Reset Password
             </Button>
           </Form>
-          <div className="w-100 text-center mt-3">
+          <div className="w-100 text-center mt-2">
             <Link to="/login">Login</Link>
           </div>
         </Card.Body>

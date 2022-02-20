@@ -56,7 +56,15 @@ export default function UpdateProfile() {
       <div>
         <TheNavbar />
       </div>
-      <Card>
+      <Card
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          alignSelf: "center",
+          marginTop: "30%",
+        }}
+        className="border-0"
+      >
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -75,7 +83,7 @@ export default function UpdateProfile() {
               <Form.Control
                 type="password"
                 ref={passwordRef}
-                placeholder="Leave blank to keep the same"
+                placeholder="Enter new password"
               />
             </Form.Group>
             <Form.Group id="password-confirm">
@@ -83,10 +91,10 @@ export default function UpdateProfile() {
               <Form.Control
                 type="password"
                 ref={passwordConfirmRef}
-                placeholder="Leave blank to keep the same"
+                placeholder="Enter new password"
               />
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <Button disabled={loading} className="w-100 mt-2" type="submit">
               Update
             </Button>
           </Form>

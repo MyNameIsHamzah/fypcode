@@ -37,6 +37,7 @@ export default function Login() {
           marginLeft: "30%",
           width: "500px",
         }}
+        className="border-0"
       >
         <Card.Body>
           <h2 className="text-center mb-4">Login</h2>

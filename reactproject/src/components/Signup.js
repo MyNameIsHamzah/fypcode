@@ -33,7 +33,17 @@ export default function Signup() {
 
   return (
     <>
-      <Card>
+      <Card
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          alignSelf: "center",
+          marginTop: "30%",
+          marginLeft: "30%",
+          width: "500px",
+        }}
+        className="border-0"
+      >
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -47,10 +57,10 @@ export default function Signup() {
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
             <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
+              <Form.Label>Confirm password</Form.Label>
               <Form.Control type="password" ref={passwordConfirmRef} required />
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <Button disabled={loading} className="w-100 mt-2" type="submit">
               Sign Up
             </Button>
           </Form>
