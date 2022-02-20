@@ -1,20 +1,27 @@
-import React, { useState } from "react"
-import { Card, Button, Alert, Nav, Navbar, NavDropdown, Container } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
-import TheNavbar from "./Navbar"
+import React, { useState } from "react";
+import {
+  Card,
+  Button,
+  Alert,
+  Nav,
+  Navbar,
+  NavDropdown,
+  Container,
+} from "react-bootstrap";
+import { useAuth } from "../contexts/AuthContext";
+import { Link, useHistory } from "react-router-dom";
+import TheNavbar from "./Navbar";
 
 export default function Profile() {
-    const [error, setError] = useState("")
-    const { currentUser, logout } = useAuth()
-    const history = useHistory()
-
+  const [error, setError] = useState("");
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
 
   return (
     <>
-    <div>
-    <TheNavbar/>
-    </div>
+      <div>
+        <TheNavbar />
+      </div>
 
       <Card>
         <Card.Body>
@@ -26,7 +33,6 @@ export default function Profile() {
           </Link>
         </Card.Body>
       </Card>
-
     </>
-  )
+  );
 }
