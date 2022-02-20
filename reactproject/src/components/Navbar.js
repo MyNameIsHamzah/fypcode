@@ -31,16 +31,11 @@ function TheNavbar() {
     <div>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="/">
-            Fitness and Health Web Application
-          </Navbar.Brand>
+          <Navbar.Brand href="/">Health and Fitness Tracker</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <NavDropdown
-                title="Fitness and Health Calculators"
-                id="basic-nav-dropdown"
-              >
+              <NavDropdown title="Calculators" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/BMICalculator">
                   BMI Calculator
                 </NavDropdown.Item>
