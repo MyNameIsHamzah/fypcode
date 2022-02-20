@@ -50,22 +50,20 @@ export default function Login() {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
-            <Button
-              disabled={loading}
-              className="w-50 mt-2 align-items-center justify-content-center"
-              type="submit"
-            >
-              Login
-            </Button>
+            <div class="btn-group">
+              <Button disabled={loading} className="w-50 mt-2" type="submit">
+                Login
+              </Button>
+              {/* <Button className="w-50 mt-2">
+                <Link to="/signup">Sign Up</Link>
+              </Button> */}
+            </div>
           </Form>
           <div className="w-100 text-center mt-3">
             <Link to="/forgot-password">Forgot Password?</Link>
           </div>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
-      </div>
     </>
   );
 }
