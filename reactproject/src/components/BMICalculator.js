@@ -47,6 +47,8 @@ export default function BMICalculator() {
       }
       else{
         setVerdict("Obese")
+        setSuggestion("It is advised to enter a caloric deficit, in order achieve a more healthier weight with a BMI less than 25.")
+
       }
   })
   }
