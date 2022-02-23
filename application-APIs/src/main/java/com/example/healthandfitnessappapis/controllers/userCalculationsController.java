@@ -28,7 +28,7 @@ public class userCalculationsController {
 public Double calculateBMI(@RequestParam (value = "weight") Double weight ,@RequestParam (value = "height") Double height ) throws Exception{
 //Formula for BMI is:
     Double BMI = (weight/(height*height));
-    
+
     return DoubleRounder.round(BMI, 2);
 }
 

@@ -10,6 +10,7 @@ export default function BMICalculator() {
   const [inputs, setInputs] = useState({});
   const [apiData, setApiData] = useState("");
   const [verdict, setVerdict] = useState("");
+  const [suggestion, setSuggestion] = useState("");
 
 
 
@@ -33,20 +34,21 @@ export default function BMICalculator() {
       setApiData(res.data)
       if(res.data > 25 && res.data < 30 ){
         setVerdict("Overweight")
+        setSuggestion("It is advised to enter a caloric deficit, in order achieve a more healthier weight with a BMI less than 25.")
       }
       else if(res.data < 18){
         setVerdict("Underweight")
+        setSuggestion("It is advised to enter a caloric surplus, in order achieve a more healthier weight with a BMI above 18, but less than 25.")
       }
       else if(res.data > 18 && res.data <25){
         setVerdict("Normal Weight")
+        setSuggestion("It is advised to stay close to a caloric maintenance, in order to maintain a healthy weight.")
+
       }
       else{
         setVerdict("Obese")
       }
   })
-
-
-
   }
 
 
@@ -62,9 +64,9 @@ export default function BMICalculator() {
     >
  
     <CardGroup>
-    <Card className = "text-center">
+    <Card className = "text-center" style={{ width: '20rem' }} >
       <Card.Body>
-      <div className="w-100 text-center mt-2">
+      <div className="w-100 text-center mt-2" m>
         <h2>BMI Calculator</h2>
         </div>
     <Form onSubmit={handleSubmit}>
@@ -117,29 +119,13 @@ export default function BMICalculator() {
   </Form>
   <div className="w-100 text-center mt-2">
         <p>{verdict}</p>
-        </div>
+        <p>{suggestion}</p>
+   </div>
 
 
   </Card.Body>
   </Card>
- {/*
-    <Card className = "text-center">
-      <Card.Body>
-      <div className="w-100 text-center mt-2">
-        <h2>Result</h2>
-        </div>
-        <Form>
-    <Form.Group className="mb-3" controlId="BMI">
-      <Form.Label>BMI</Form.Label>
-      <InputGroup>
-      <Form.Control   readOnly defaultValue={apiData} type="BMI" placeholder="" aria-describedby="basic-addon5"  />
-      <InputGroup.Text id="basic-addon5">kg/m²</InputGroup.Text>
-      </InputGroup>
-    </Form.Group>
-    </Form>
-      </Card.Body>
-    </Card>
-    */}
+
     </CardGroup>
 
   </Container>
