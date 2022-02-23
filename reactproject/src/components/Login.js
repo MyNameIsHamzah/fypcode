@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card, Alert, Container } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 
@@ -28,19 +28,13 @@ export default function Login() {
 
   return (
     <>
-      <Card
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          alignSelf: "center",
-          marginTop: "30%",
-          marginLeft: "30%",
-          width: "500px",
-        }}
-        className="border-0"
-      >
+    <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Card className="text-center" >
         <Card.Body>
-          <h2 className="text-center mb-4">Login</h2>
+          <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
@@ -51,20 +45,20 @@ export default function Login() {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
-            <div class="btn-group">
-              <Button disabled={loading} className="w-50 mt-2" type="submit">
-                Login
-              </Button>
-              {/* <Button className="w-50 mt-2">
-                <Link to="/signup">Sign Up</Link>
-              </Button> */}
-            </div>
+            <Button disabled={loading} className="w-100 mt-2" type="submit">
+              Log In
+            </Button>
           </Form>
-          <div className="w-100 text-center mt-3">
+          <div className="w-100 text-center mt-2">
             <Link to="/forgot-password">Forgot Password?</Link>
           </div>
+          <div className="w-100 text-center mt-2">
+        Need an account? <Link to="/signup">Sign Up</Link>
+      </div>
         </Card.Body>
       </Card>
+   
+      </Container>
     </>
   );
 }

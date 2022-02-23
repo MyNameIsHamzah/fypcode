@@ -1,5 +1,7 @@
 package com.example.healthandfitnessappapis.controllers;
 import com.example.healthandfitnessappapis.models.userCalculations;
+import org.decimal4j.util.DoubleRounder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +14,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.round;
 
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "api/v1/calculate")
 public class userCalculationsController {
@@ -20,10 +25,11 @@ public class userCalculationsController {
 
     //this will end up having to handle JSON, for now just make the functionalities and test in postman.
     @RequestMapping(path = "/BMI")
-public String calculateBMI(@RequestParam (value = "weight") Double weight ,@RequestParam (value = "height") Double height ) throws Exception{
+public Double calculateBMI(@RequestParam (value = "weight") Double weight ,@RequestParam (value = "height") Double height ) throws Exception{
 //Formula for BMI is:
-    Double BMI = weight/(height*height);
-    return "BMI: " + BMI;
+    Double BMI = (weight/(height*height));
+    
+    return DoubleRounder.round(BMI, 2);
 }
 
     public String calcTDEE(Double BMR, String activitylevel){

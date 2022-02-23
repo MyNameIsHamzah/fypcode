@@ -18,11 +18,17 @@ export default function TDEECalculator() {
         <TheNavbar />
       </div>
 
+
+      <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Card className="text-center" >
+        <Card.Body>
+
       <div className="w-100 text-center mt-2">
         <h2>TDEE Calculator</h2>
       </div>
-
-      <div className="w-100 text-center mt-2">
         <Form>
           <Form.Group className="mb-3" controlId="Age">
             <Form.Label>Age</Form.Label>
@@ -48,7 +54,9 @@ export default function TDEECalculator() {
             Submit
           </Button>
         </Form>
-      </div>
+        </Card.Body>
+        </Card>
+        </Container>
     </>
   );
 }

@@ -56,20 +56,15 @@ export default function UpdateProfile() {
       <div>
         <TheNavbar />
       </div>
-      <Card
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          alignSelf: "center",
-          marginTop: "30%",
-        }}
-        className="border-0"
-      >
+      <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}>
+      <Card className = "text-center">
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
+            <Form.Group className="mb-2" id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -78,7 +73,7 @@ export default function UpdateProfile() {
                 defaultValue={currentUser.email}
               />
             </Form.Group>
-            <Form.Group id="password">
+            <Form.Group className="mb-2" id="password">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -86,7 +81,7 @@ export default function UpdateProfile() {
                 placeholder="Enter new password"
               />
             </Form.Group>
-            <Form.Group id="password-confirm">
+            <Form.Group className="mb-2" id="password-confirm">
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control
                 type="password"
@@ -98,11 +93,12 @@ export default function UpdateProfile() {
               Update
             </Button>
           </Form>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
+          <div className="w-100 text-center mt-2">
         <Link to="/">Cancel</Link>
       </div>
+        </Card.Body>
+      </Card>
+      </Container>
     </>
   );
 }

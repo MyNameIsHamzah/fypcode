@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card, Alert, Container } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
@@ -28,17 +28,11 @@ export default function ForgotPassword() {
 
   return (
     <>
-      <Card
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          alignSelf: "center",
-          marginTop: "30%",
-          marginLeft: "30%",
-          width: "500px",
-        }}
-        className="border-0"
-      >
+      <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Card className="text-center">
         <Card.Body>
           <h2 className="text-center mb-4">Password Reset</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -55,11 +49,13 @@ export default function ForgotPassword() {
           <div className="w-100 text-center mt-2">
             <Link to="/login">Login</Link>
           </div>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
+          <div className="w-100 text-center mt-2">
         Need an account? <Link to="/signup">Sign Up</Link>
       </div>
+        </Card.Body>
+      </Card>
+      </Container>
     </>
+    
   );
 }

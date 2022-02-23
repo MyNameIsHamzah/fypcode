@@ -23,6 +23,9 @@ export default function Profile() {
         <TheNavbar />
       </div>
 
+      <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
@@ -33,6 +36,7 @@ export default function Profile() {
           </Link>
         </Card.Body>
       </Card>
+      </Container>
     </>
   );
 }

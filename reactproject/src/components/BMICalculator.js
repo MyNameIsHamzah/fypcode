@@ -1,49 +1,150 @@
-import React, { useRef, useState } from "react";
-import {
-  Form,
-  Button,
-  Card,
-  Alert,
-  Nav,
-  Navbar,
-  NavDropdown,
-  Container,
-} from "react-bootstrap";
-import TheNavbar from "./Navbar";
+import React, { useRef, useState} from "react"
+import { Form, Button, Card, Alert, Nav, Navbar, NavDropdown, Container, Row, Col, InputGroup, CardGroup } from "react-bootstrap"
+import axios from "axios";
+import TheNavbar from "./Navbar"
 
 export default function BMICalculator() {
-  return (
-    <>
-      <div>
-        <TheNavbar />
-      </div>
 
+
+
+  const [inputs, setInputs] = useState({});
+  const [apiData, setApiData] = useState("");
+  const [verdict, setVerdict] = useState("");
+
+
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}))
+  }
+
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    var Age = inputs["age"];
+    var Height= inputs["height"]
+    var Weight = inputs["weight"]
+
+    axios.get(`http://localhost:8080/api/v1/calculate/BMI?weight=`+Weight+`&height=`+Height)
+    .then(res => {
+      setApiData(res.data)
+      if(res.data > 25 && res.data < 30 ){
+        setVerdict("Overweight")
+      }
+      else if(res.data < 18){
+        setVerdict("Underweight")
+      }
+      else if(res.data > 18 && res.data <25){
+        setVerdict("Normal Weight")
+      }
+      else{
+        setVerdict("Obese")
+      }
+  })
+
+
+
+  }
+
+
+  return (
+<>
+<div>
+<TheNavbar/>
+</div>
+
+<Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: "100vh" }}
+    >
+ 
+    <CardGroup>
+    <Card className = "text-center">
+      <Card.Body>
       <div className="w-100 text-center mt-2">
         <h2>BMI Calculator</h2>
-      </div>
+        </div>
+    <Form onSubmit={handleSubmit}>
+    <Form.Group className="mb-3" controlId="Age">
+      <Form.Label>Age</Form.Label>
+      <InputGroup>
+      <Form.Control type="text" name="age" placeholder="20" aria-describedby="basic-addon" 
+      value={inputs.age || ""} 
+      onChange={handleChange}/>
+      <InputGroup.Text id="basic-addon">years</InputGroup.Text>
+      </InputGroup>
+    </Form.Group>
+  
+    <Form.Group className="mb-3" controlId="Height">
+      <Form.Label>Height</Form.Label>
+      <InputGroup>
+      <Form.Control type="height" name="height" placeholder="1.8" aria-describedby="basic-addon2" 
+      value={inputs.height || ""} 
+      onChange={handleChange}/>
+      <InputGroup.Text id="basic-addon2">metres</InputGroup.Text>
+      </InputGroup>
+    </Form.Group>
 
+    <Form.Group className="mb-3" controlId="Weight">
+      <Form.Label>Weight</Form.Label>
+      <InputGroup>
+      <Form.Control type="weight" name="weight" placeholder="65" aria-describedby="basic-addon3"  
+      value={inputs.weight || ""}        
+      onChange={handleChange}/>
+      <InputGroup.Text id="basic-addon3">kg</InputGroup.Text>
+      </InputGroup>
+    </Form.Group>
+
+
+    <Button variant="primary" type="submit">
+      Calculate
+    </Button>
+
+    <div className="w-100 text-center mt-2">
+        <h2>Result</h2>
+        </div>
+
+    <Form.Group className="mb-3" controlId="BMI">
+      <Form.Label class>BMI</Form.Label>
+      <InputGroup>
+      <Form.Control   readOnly defaultValue={apiData} type="BMI" placeholder="" aria-describedby="basic-addon5"  />
+      <InputGroup.Text id="basic-addon5">kg/m²</InputGroup.Text>
+      </InputGroup>
+    </Form.Group>
+  </Form>
+  <div className="w-100 text-center mt-2">
+        <p>{verdict}</p>
+        </div>
+
+
+  </Card.Body>
+  </Card>
+ {/*
+    <Card className = "text-center">
+      <Card.Body>
       <div className="w-100 text-center mt-2">
+        <h2>Result</h2>
+        </div>
         <Form>
-          <Form.Group className="mb-3" controlId="Age">
-            <Form.Label>Age</Form.Label>
-            <Form.Control type="age" placeholder="Enter Age" />
-          </Form.Group>
+    <Form.Group className="mb-3" controlId="BMI">
+      <Form.Label>BMI</Form.Label>
+      <InputGroup>
+      <Form.Control   readOnly defaultValue={apiData} type="BMI" placeholder="" aria-describedby="basic-addon5"  />
+      <InputGroup.Text id="basic-addon5">kg/m²</InputGroup.Text>
+      </InputGroup>
+    </Form.Group>
+    </Form>
+      </Card.Body>
+    </Card>
+    */}
+    </CardGroup>
 
-          <Form.Group className="mb-3" controlId="Height">
-            <Form.Label>Height</Form.Label>
-            <Form.Control type="height" placeholder="Enter Height (M)" />
-          </Form.Group>
+  </Container>
+  </>
 
-          <Form.Group className="mb-3" controlId="Weight">
-            <Form.Label>Weight</Form.Label>
-            <Form.Control type="weight" placeholder="Enter Weight (kg)" />
-          </Form.Group>
-
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </div>
-    </>
-  );
+  )
 }
+

@@ -29,7 +29,7 @@ function TheNavbar() {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg" sticky="top" >
         <Container>
           <Navbar.Brand href="/">Health and Fitness Tracker</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -45,8 +45,10 @@ function TheNavbar() {
               </NavDropdown>
               <Nav.Link href="#link">Calorie Tracker</Nav.Link>
               <Nav.Link href="#link">Exercise Log</Nav.Link>
-              <Nav.Link href="/profile">Profile</Nav.Link>
-              <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+            </Nav>
+            <Nav>
+            <Nav.Link href="/profile">Profile</Nav.Link>
+            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
