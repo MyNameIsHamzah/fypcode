@@ -32,7 +32,7 @@ public Double calculateBMI(@RequestParam (value = "weight") Double weight ,@Requ
     return DoubleRounder.round(BMI, 2);
 }
 
-    public String calcTDEE(Double BMR, String activitylevel){
+    public int calcTDEE(Double BMR, String activitylevel){
 
         int TDEE = 0;
 
@@ -51,33 +51,38 @@ public Double calculateBMI(@RequestParam (value = "weight") Double weight ,@Requ
         else if (activitylevel.equals("athlete")){
             TDEE =(int) (BMR*1.9);
         }
-        return "TDEE: " + TDEE;
+        return TDEE;
     }
 
     @RequestMapping(path = "/TDEE")
-    public List calculateTDEE(@RequestParam (value = "weight") Double weight ,
+    public int calculateTDEE(@RequestParam (value = "weight") Double weight ,
                               @RequestParam (value = "height") Double height,
                               @RequestParam (value = "age") int age,
                               @RequestParam (value = "gender") String gender,
                               @RequestParam (value = "activitylevel") String activitylevel) throws Exception{
 
-        List<String> maintenanceCals = new ArrayList<String>();
+       // List<int> maintenanceCals = new ArrayList<String>();
+        //maintenanceCals.add(theTdee);
 
-        if(gender.equals("male")){
-            Double heightincm = height*100;
-            Double BMR = (10*weight) + (6.25*heightincm) - (5*age) + 5;
-            String theTdee = calcTDEE(BMR,activitylevel);
-            maintenanceCals.add(theTdee);
-        }
+        if(gender.equals("female")){
 
-        else if (gender.equals("female")){
             Double heightincm = height*100;
             Double BMR = (10*weight) + (6.25*heightincm) - (5*age) -161;
-            String theTdee = calcTDEE(BMR,activitylevel);
-            maintenanceCals.add(theTdee);
+            int theTdee = calcTDEE(BMR,activitylevel);
+            //maintenanceCals.add(theTdee);
+            return theTdee;
+
+
         }
 
-        return maintenanceCals;
+        Double heightincm = height*100;
+        Double BMR = (10*weight) + (6.25*heightincm) - (5*age) + 5;
+        int theTdee = calcTDEE(BMR,activitylevel);
+        return theTdee;
+
+
+
+        //return maintenanceCals;
     }
 
 }
