@@ -1,138 +1,166 @@
-import React, { useRef, useState} from "react"
-import { Form, Button, Card, Alert, Nav, Navbar, NavDropdown, Container, Row, Col, InputGroup, CardGroup } from "react-bootstrap"
+import React, { useRef, useState } from "react";
+import {
+  Form,
+  Button,
+  Card,
+  Alert,
+  Nav,
+  Navbar,
+  NavDropdown,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  CardGroup,
+  ref,
+} from "react-bootstrap";
 import axios from "axios";
-import TheNavbar from "./Navbar"
+import TheNavbar from "./Navbar";
 
 export default function BMICalculator() {
-
-
-
   const [inputs, setInputs] = useState({});
   const [apiData, setApiData] = useState("");
   const [verdict, setVerdict] = useState("");
   const [suggestion, setSuggestion] = useState("");
 
-
-
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs(values => ({...values, [name]: value}))
-  }
-
-
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     var Age = inputs["age"];
-    var Height= inputs["height"]
-    var Weight = inputs["weight"]
+    var Height = inputs["height"];
+    var Weight = inputs["weight"];
 
-    axios.get(`http://localhost:8080/api/v1/calculate/BMI?weight=`+Weight+`&height=`+Height)
-    .then(res => {
-      setApiData(res.data)
-      if(res.data > 25 && res.data < 30 ){
-        setVerdict("Overweight")
-        setSuggestion("It is advised to enter a caloric deficit, in order achieve a more healthier weight with a BMI less than 25.")
-      }
-      else if(res.data < 18){
-        setVerdict("Underweight")
-        setSuggestion("It is advised to enter a caloric surplus, in order achieve a more healthier weight with a BMI above 18, but less than 25.")
-      }
-      else if(res.data > 18 && res.data <25){
-        setVerdict("Normal Weight")
-        setSuggestion("It is advised to stay close to a caloric maintenance, in order to maintain a healthy weight.")
-
-      }
-      else{
-        setVerdict("Obese")
-        setSuggestion("It is advised to enter a caloric deficit, in order achieve a more healthier weight with a BMI less than 25.")
-
-      }
-  })
-  }
-
+    axios
+      .get(
+        `http://localhost:8080/api/v1/calculate/BMI?weight=` +
+          Weight +
+          `&height=` +
+          Height
+      )
+      .then((res) => {
+        setApiData(res.data);
+        if (res.data > 25 && res.data < 30) {
+          setVerdict("Overweight");
+          setSuggestion(
+            "It is advised to enter a caloric deficit, in order achieve a more healthier weight with a BMI less than 25."
+          );
+        } else if (res.data < 18) {
+          setVerdict("Underweight");
+          setSuggestion(
+            "It is advised to enter a caloric surplus, in order achieve a more healthier weight with a BMI above 18, but less than 25."
+          );
+        } else if (res.data > 18 && res.data < 25) {
+          setVerdict("Normal Weight");
+          setSuggestion(
+            "It is advised to stay close to a caloric maintenance, in order to maintain a healthy weight."
+          );
+        } else {
+          setVerdict("Obese");
+          setSuggestion(
+            "It is advised to enter a caloric deficit, in order achieve a more healthier weight with a BMI less than 25."
+          );
+        }
+      });
+  };
 
   return (
-<>
-<div>
-<TheNavbar/>
-</div>
+    <>
+      <div>
+        <TheNavbar />
+      </div>
 
-<Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
- 
-    <CardGroup>
-    <Card className = "text-center" style={{ width: '20rem' }} >
-      <Card.Body>
-      <div className="w-100 text-center mt-2" m>
-        <h2>BMI Calculator</h2>
-        </div>
-    <Form onSubmit={handleSubmit}>
-    <Form.Group className="mb-3" controlId="Age">
-      <Form.Label>Age</Form.Label>
-      <InputGroup>
-      <Form.Control type="text" name="age" placeholder="20" aria-describedby="basic-addon" 
-      value={inputs.age || ""} 
-      onChange={handleChange}/>
-      <InputGroup.Text id="basic-addon">years</InputGroup.Text>
-      </InputGroup>
-    </Form.Group>
-  
-    <Form.Group className="mb-3" controlId="Height">
-      <Form.Label>Height</Form.Label>
-      <InputGroup>
-      <Form.Control type="height" name="height" placeholder="1.8" aria-describedby="basic-addon2" 
-      value={inputs.height || ""} 
-      onChange={handleChange}/>
-      <InputGroup.Text id="basic-addon2">metres</InputGroup.Text>
-      </InputGroup>
-    </Form.Group>
+      <Container
+        className="d-flex align-items-center justify-content-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <CardGroup>
+          <Card className="text-center" style={{ width: "20rem" }}>
+            <Card.Body>
+              <div className="w-100 text-center mt-2" m>
+                <h2>BMI Calculator</h2>
+              </div>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="Age">
+                  <Form.Label>Age</Form.Label>
+                  <InputGroup>
+                    <Form.Control
+                      type="text"
+                      name="age"
+                      placeholder="20"
+                      aria-describedby="basic-addon"
+                      value={inputs.age || ""}
+                      onChange={handleChange}
+                    />
+                    <InputGroup.Text id="basic-addon">years</InputGroup.Text>
+                  </InputGroup>
+                </Form.Group>
 
-    <Form.Group className="mb-3" controlId="Weight">
-      <Form.Label>Weight</Form.Label>
-      <InputGroup>
-      <Form.Control type="weight" name="weight" placeholder="65" aria-describedby="basic-addon3"  
-      value={inputs.weight || ""}        
-      onChange={handleChange}/>
-      <InputGroup.Text id="basic-addon3">kg</InputGroup.Text>
-      </InputGroup>
-    </Form.Group>
+                <Form.Group className="mb-3" controlId="Height">
+                  <Form.Label>Height</Form.Label>
+                  <InputGroup>
+                    <Form.Control
+                      type="height"
+                      name="height"
+                      placeholder="1.8"
+                      aria-describedby="basic-addon2"
+                      value={inputs.height || ""}
+                      onChange={handleChange}
+                    />
+                    <InputGroup.Text id="basic-addon2">metres</InputGroup.Text>
+                  </InputGroup>
+                </Form.Group>
 
+                <Form.Group className="mb-3" controlId="Weight">
+                  <Form.Label>Weight</Form.Label>
+                  <InputGroup>
+                    <Form.Control
+                      type="weight"
+                      name="weight"
+                      placeholder="65"
+                      aria-describedby="basic-addon3"
+                      value={inputs.weight || ""}
+                      onChange={handleChange}
+                    />
+                    <InputGroup.Text id="basic-addon3">kg</InputGroup.Text>
+                  </InputGroup>
+                </Form.Group>
 
-    <Button variant="primary" type="submit">
-      Calculate
-    </Button>
+                <Button variant="primary" type="submit">
+                  Calculate
+                </Button>
 
-    <div className="w-100 text-center mt-2">
-        <h2>Result</h2>
-        </div>
+                <div className="w-100 text-center mt-2">
+                  <h2>Result</h2>
+                </div>
 
-    <Form.Group className="mb-3" controlId="BMI">
-      <Form.Label class>BMI</Form.Label>
-      <InputGroup>
-      <Form.Control   readOnly defaultValue={apiData} type="BMI" placeholder="" aria-describedby="basic-addon5"  />
-      <InputGroup.Text id="basic-addon5">kg/m²</InputGroup.Text>
-      </InputGroup>
-    </Form.Group>
-  </Form>
-  <div className="w-100 text-center mt-2">
-        <p>{verdict}</p>
-        <p>{suggestion}</p>
-   </div>
-
-
-  </Card.Body>
-  </Card>
-
-    </CardGroup>
-
-  </Container>
-  </>
-
-  )
+                <Form.Group className="mb-3" controlId="BMI">
+                  <Form.Label class>BMI</Form.Label>
+                  <InputGroup>
+                    <Form.Control
+                      readOnly
+                      defaultValue={apiData}
+                      type="BMI"
+                      placeholder=""
+                      aria-describedby="basic-addon5"
+                    />
+                    <InputGroup.Text id="basic-addon5">kg/m²</InputGroup.Text>
+                  </InputGroup>
+                </Form.Group>
+              </Form>
+              <div className="w-100 text-center mt-2">
+                <p>{verdict}</p>
+                <p>{suggestion}</p>
+              </div>
+            </Card.Body>
+          </Card>
+        </CardGroup>
+      </Container>
+    </>
+  );
 }
-

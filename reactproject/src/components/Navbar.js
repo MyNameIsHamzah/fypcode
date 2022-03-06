@@ -29,7 +29,7 @@ function TheNavbar() {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg" sticky="top" >
+      <Navbar bg="light" expand="lg" sticky="top">
         <Container>
           <Navbar.Brand href="/">Health and Fitness Tracker</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -43,12 +43,29 @@ function TheNavbar() {
                   TDEE Calculator
                 </NavDropdown.Item>
               </NavDropdown>
+              <NavDropdown title="Exercise Tracker" id="basic-nav-dropdown2">
+                <NavDropdown.Item href="/ExerciseLog">
+                  Exercise Log
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/ViewWorkouts">
+                  Previous Workouts
+                </NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown title="Weight Tracker" id="basic-nav-dropdown3">
+                <NavDropdown.Item href="/WeightLog">
+                  Weight Log
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/WeightProgress">
+                  Progress
+                </NavDropdown.Item>
+              </NavDropdown>
+
               <Nav.Link href="#link">Calorie Tracker</Nav.Link>
-              <Nav.Link href="#link">Exercise Log</Nav.Link>
+
             </Nav>
             <Nav>
-            <Nav.Link href="/profile">Profile</Nav.Link>
-            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+              <Nav.Link href="/profile">Profile</Nav.Link>
+              <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

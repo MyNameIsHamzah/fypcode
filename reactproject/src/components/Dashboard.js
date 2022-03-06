@@ -11,7 +11,7 @@ export default function Dashboard() {
         <TheNavbar />
       </div>
       <div className="w-100 text-center mt-2">
-        <h1>DASHBOARD</h1>
+        <h1>Fitness and Health Web Application</h1>
       </div>
     </>
   );

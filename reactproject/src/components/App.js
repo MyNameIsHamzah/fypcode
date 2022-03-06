@@ -13,6 +13,10 @@ import UpdateProfile from "./UpdateProfile";
 import Profile from "./Profile";
 import BMICalculator from "./BMICalculator";
 import TDEECalculator from "./TDEECalculator";
+import ExerciseLog from "./ExerciseLog";
+import ViewWorkouts from "./ViewWorkouts";
+import WeightLog from "./WeightLog";
+import WeightProgress from "./WeightProgress";
 
 function App() {
   return (
@@ -40,10 +44,30 @@ function App() {
                 title="BMI Calculator"
               />
               <PrivateRoute
-                exact
-                path="/TDEECalculator"
+                exact path="/TDEECalculator"
                 component={TDEECalculator}
                 title="TDEE Calculator"
+              />
+               <PrivateRoute
+                exact path= "/ExerciseLog"
+                component={ExerciseLog}
+                title="Exercise Log"
+              />
+              <PrivateRoute
+                exact path= "/ViewWorkouts"
+                component={ViewWorkouts}
+                title="View Workouts"
+              />
+               <PrivateRoute
+                exact path= "/WeightLog"
+                component={WeightLog}
+                title="Weight Log"
+              />
+
+              <PrivateRoute
+                exact path= "/WeightProgress"
+                component={WeightProgress}
+                title="Weight Progress"
               />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <Route path="/signup" component={Signup} title="Signup" />
