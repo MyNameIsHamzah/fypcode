@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Card, Container, InputGroup, CardGroup } from "react-bootstrap";
+import { Card, Container, InputGroup, CardGroup, Row } from "react-bootstrap";
 import TheNavbar from "./Navbar";
 import { app, auth } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
@@ -20,9 +20,32 @@ export default function WeightProgress() {
 
   const db = getDatabase();
 
-  const [data, setData] = useState([]);
+  const Motivationalmessage = () =>{
+    var motivation = ["It does not matter how slowly you go, as long as you don’t stop – Confucius",
+    "Don’t let a stumble in the road be the end of your journey",
+    "Don’t dig your grave with your own knife and fork",
+    "Keep going",
+    "When you feel like quitting, think about why you started",
+    "The past cannot be changed, the future is yet in your power" ]
 
+    var message = motivation[Math.floor(Math.random() * motivation.length)];
+
+    return (
+      <div className="w-100 text-center mt-2" m>
+        <p>{message}</p>
+        
+    </div>);
+  
+  
+  }
+
+  
+ 
   const WeightDisplay = () => {
+    var thedates=[];
+    var theweights=[];
+   
+    const [weightanddate, setWeightanddate] = useState([]);
     useEffect(() => {
       (async () => {
         const getData = ref(db, "users/" + auth.currentUser.uid + "weighins/");
@@ -36,19 +59,46 @@ export default function WeightProgress() {
           } else {
             thedata = Object.entries(data);
           }
-
-          setData(thedata);
+          setWeightanddate(thedata);
         });
       })();
     }, []);
 
-    if (data == null || data.length === 0) {
-      return <p>There are no weight entries!</p>;
+    if ( weightanddate == null || weightanddate.length === 0) {
+      return (
+        <div className="w-100 text-center mt-2" m>
+      <p>There are no weight entries!</p>
+      </div>);
+    
+    
     }
-
-    return data.map((weightDetail) => {
-      return <TheWeight thedata={weightDetail} />;
+    
+    weightanddate.map((weightDetail) => {
+      thedates.push(weightDetail[1].weightdate)
+      theweights.push(weightDetail[1].weight)
     });
+
+    console.log(thedates);
+    console.log(theweights);
+    return (
+      
+      <Line
+      datasetIdKey="id"
+      data={{
+        labels: thedates,
+        datasets: [
+          {
+            id: 1,
+            label: "weight in kg",
+            data: theweights,
+          },
+  
+        ],
+      }}
+    />
+
+
+    );
   };
 
   return (
@@ -56,45 +106,19 @@ export default function WeightProgress() {
       <div>
         <TheNavbar />
       </div>
-
-      <Container
-        className="d-flex align-items-center justify-content-center"
-        style={{ minHeight: "100vh" }}
-      >
-        <div>
-          <CardGroup>
-            <Card className="text-center" style={{ width: "20rem" }}>
-              <Card.Body>
-                <div className="w-100 text-center mt-2" m>
+      <Container fluid >
+      <Row>
+      <div className="w-100 text-center mt-2" m>
                   <h1>Weight Progress</h1>
-                </div>
+      </div>
 
-                <div>
-                  <WeightDisplay />
-                </div>
-
-              
-              </Card.Body>
-            </Card>
-          </CardGroup>
-
-          <div>
-                  <Line
-                    datasetIdKey="id"
-                    data={{
-                      labels: ["Jun", "Jul", "Aug"],
-                      datasets: [
-                        {
-                          id: 1,
-                          label: "",
-                          data: [5, 6, 7],
-                        },
-                
-                      ],
-                    }}
-                  />
-                </div>
-        </div>
+      <div>
+          <WeightDisplay />
+      </div>
+      <div>
+          <Motivationalmessage />
+      </div>
+      </Row>
       </Container>
     </>
   );

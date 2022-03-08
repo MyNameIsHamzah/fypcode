@@ -60,7 +60,7 @@ function TheNavbar() {
                 </NavDropdown.Item>
               </NavDropdown>
 
-              <Nav.Link href="#link">Calorie Tracker</Nav.Link>
+              <Nav.Link href="/CalorieTracker">Calorie Tracker</Nav.Link>
 
             </Nav>
             <Nav>

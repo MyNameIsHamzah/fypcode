@@ -22,6 +22,7 @@ export default function BMICalculator() {
   const [apiData, setApiData] = useState("");
   const [verdict, setVerdict] = useState("");
   const [suggestion, setSuggestion] = useState("");
+  const [validated, setValidated] = useState(false);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -30,7 +31,13 @@ export default function BMICalculator() {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
 
     var Age = inputs["age"];
     var Height = inputs["height"];
@@ -85,49 +92,63 @@ export default function BMICalculator() {
               <div className="w-100 text-center mt-2" m>
                 <h2>BMI Calculator</h2>
               </div>
-              <Form onSubmit={handleSubmit}>
+              <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="Age">
                   <Form.Label>Age</Form.Label>
-                  <InputGroup>
+                  <InputGroup hasValidation>
+                  
                     <Form.Control
                       type="text"
                       name="age"
                       placeholder="20"
+                      required
                       aria-describedby="basic-addon"
                       value={inputs.age || ""}
                       onChange={handleChange}
                     />
                     <InputGroup.Text id="basic-addon">years</InputGroup.Text>
+                   <Form.Control.Feedback type="invalid">
+                     Please enter an age
+                     </Form.Control.Feedback>
                   </InputGroup>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="Height">
                   <Form.Label>Height</Form.Label>
-                  <InputGroup>
+                  <InputGroup hasValidation>
                     <Form.Control
                       type="height"
                       name="height"
                       placeholder="1.8"
                       aria-describedby="basic-addon2"
+                      required
                       value={inputs.height || ""}
                       onChange={handleChange}
                     />
                     <InputGroup.Text id="basic-addon2">metres</InputGroup.Text>
+
+                     <Form.Control.Feedback type="invalid">
+                     Please enter a height
+                     </Form.Control.Feedback>
                   </InputGroup>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="Weight">
                   <Form.Label>Weight</Form.Label>
-                  <InputGroup>
+                  <InputGroup hasValidation>
                     <Form.Control
                       type="weight"
                       name="weight"
                       placeholder="65"
                       aria-describedby="basic-addon3"
+                      required
                       value={inputs.weight || ""}
                       onChange={handleChange}
                     />
                     <InputGroup.Text id="basic-addon3">kg</InputGroup.Text>
+                     <Form.Control.Feedback type="invalid">
+                     Please enter a weight
+                     </Form.Control.Feedback>
                   </InputGroup>
                 </Form.Group>
 

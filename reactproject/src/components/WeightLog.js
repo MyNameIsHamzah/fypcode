@@ -4,9 +4,15 @@ import TheNavbar from "./Navbar";
 import { app, auth } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
 import { getDatabase, ref, set, push } from "firebase/database";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
+import { registerLocale, setDefaultLocale, dateFormat } from  "react-datepicker";
 
 import { Line, Chart } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto'
+setDefaultLocale('enGB')
+
 
 var arrofexercises = [];
 var arrofdurations = [];
@@ -17,6 +23,8 @@ export default function WeightLog() {
  
     const [inputs, setInputs] = useState({});  
   const { currentUser, logout } = useAuth();
+  const [validated, setValidated] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
 
   const db = getDatabase();
   var weightdate = inputs["weightdate"];
@@ -29,21 +37,23 @@ export default function WeightLog() {
     setInputs(values => ({...values, [name]: value}))
   }
 
- 
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
 
+    setValidated(true);
     console.log(weightdate);
     console.log(weight);
 
+    var thedate = moment(startDate).format('DD/MM/YYYY');
        push(ref(db, 'users/' + auth.currentUser.uid + 'weighins/'), {
-        weightdate: weightdate,
+        weightdate: thedate,
         weight: weight
       });
-    
-
-
   }
 
 
@@ -57,8 +67,6 @@ export default function WeightLog() {
       className="d-flex align-items-center justify-content-center"
       style={{ minHeight: "100vh" }}>
 
-
-
       <div>
       <CardGroup>
     <Card className = "text-center" style={{ width: '20rem' }} >
@@ -68,22 +76,24 @@ export default function WeightLog() {
         <h2>Weight Log</h2>
         </div>
 
-        <Form>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
-        <Form.Group className="mb-3" controlId="date" >
-      <Form.Label>Date</Form.Label>
-      <InputGroup>
-      <Form.Control type="text" className="text-center" name="weightdate"  aria-describedby="basic-addon3"  value={inputs.weightdate || ""} onChange={handleChange} />
-      <InputGroup.Text id="basic-addon4">dd/mm/yy</InputGroup.Text>
-      </InputGroup>
-
-   </Form.Group>
+        <div className="mb-3">
+        <DatePicker 
+        className = "text-center"
+        dateFormat="dd/MM/yyyy"
+        selected={startDate}
+         onSelect={(date) => setStartDate(date)} />
+        </div>
        
         <Form.Group className="mb-3" controlId="weight">
       <Form.Label>Weight</Form.Label>
-      <InputGroup>
-      <Form.Control type="weight" className="text-center" name="weight" aria-describedby="basic-addon3"  value={inputs.weight || ""} onChange={handleChange} />
+      <InputGroup hasValidation>
+      <Form.Control type="text" className="text-center" required name="weight" aria-describedby="basic-addon3"  value={inputs.weight || ""} onChange={handleChange} />
       <InputGroup.Text id="basic-addon5">kg</InputGroup.Text>
+      <Form.Control.Feedback type="invalid">
+                     Please enter an age
+                     </Form.Control.Feedback>
       </InputGroup>
 
     </Form.Group>
