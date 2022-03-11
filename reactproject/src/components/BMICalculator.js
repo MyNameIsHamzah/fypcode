@@ -33,11 +33,11 @@ export default function BMICalculator() {
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
     }
 
     setValidated(true);
+    event.preventDefault();
 
     var Age = inputs["age"];
     var Height = inputs["height"];
@@ -117,7 +117,7 @@ export default function BMICalculator() {
                   <Form.Label>Height</Form.Label>
                   <InputGroup hasValidation>
                     <Form.Control
-                      type="height"
+                      type="text"
                       name="height"
                       placeholder="1.8"
                       aria-describedby="basic-addon2"

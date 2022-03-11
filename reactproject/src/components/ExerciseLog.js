@@ -7,7 +7,7 @@ import { getDatabase, ref, set, push } from "firebase/database";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
-import { registerLocale, setDefaultLocale, dateFormat } from  "react-datepicker";
+import { registerLocale, setDefaultLocale, dateFormat, addDays, maxDate, subDays} from  "react-datepicker";
 setDefaultLocale('enGB')
 
 var arrofexercises = [];
@@ -94,7 +94,11 @@ export default function ExerciseLog() {
         className = "text-center"
         dateFormat="dd/MM/yyyy"
         selected={startDate}
-         onSelect={(date) => setStartDate(date)} />
+        maxDate={moment().toDate()}
+      
+        onSelect={(date) => setStartDate(date)}
+
+         />
 </div>
       {/*<Form.Group className="mb-3" controlId="date" >
       <Form.Label>Date</Form.Label>

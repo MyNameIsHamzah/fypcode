@@ -8,6 +8,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { registerLocale, setDefaultLocale, dateFormat } from  "react-datepicker";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Line, Chart } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto'
@@ -31,6 +33,7 @@ export default function WeightLog() {
   var weight = inputs["weight"];
 
 
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -41,11 +44,11 @@ export default function WeightLog() {
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
     }
 
     setValidated(true);
+
     console.log(weightdate);
     console.log(weight);
 
@@ -54,6 +57,9 @@ export default function WeightLog() {
         weightdate: thedate,
         weight: weight
       });
+
+      toast.success("Weight Logged!")
+
   }
 
 
@@ -82,6 +88,7 @@ export default function WeightLog() {
         <DatePicker 
         className = "text-center"
         dateFormat="dd/MM/yyyy"
+        maxDate={moment().toDate()}
         selected={startDate}
          onSelect={(date) => setStartDate(date)} />
         </div>

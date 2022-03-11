@@ -29,11 +29,11 @@ export default function TDEECalculator() {
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
     }
 
     setValidated(true);
+    event.preventDefault();
 
     var Age = inputs["age"];
     var Height = inputs["height"];
