@@ -1,5 +1,6 @@
 import React, { useRef, useState} from "react"
-import { Form, Button, Card, Alert, Nav, Navbar, NavDropdown, Container, Row, Col, InputGroup, CardGroup } from "react-bootstrap"
+import { Form, Button, Card, Alert, Nav, Navbar, NavDropdown, Container, Row,
+   Col, InputGroup, CardGroup } from "react-bootstrap"
 import TheNavbar from "./Navbar";
 import { app, auth } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
@@ -7,12 +8,16 @@ import { getDatabase, ref, set, push } from "firebase/database";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { registerLocale, setDefaultLocale, dateFormat, addDays, maxDate, subDays} from  "react-datepicker";
 setDefaultLocale('enGB')
 
 var arrofexercises = [];
 var arrofdurations = [];
 var totalTime = 0;
+
+toast.configure()
 
 
 export default function ExerciseLog() {
@@ -24,9 +29,10 @@ export default function ExerciseLog() {
 
 
   const db = getDatabase();
-  var exerciseName = inputs["exercise"];
-  var duration = inputs["duration"];
-  var date = inputs["date"];
+  let exerciseName = inputs["exercise"];
+  let duration = inputs["duration"];
+
+
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -34,20 +40,31 @@ export default function ExerciseLog() {
     setInputs(values => ({...values, [name]: value}))
   }
 
+
   const handleAdd = (event) => {
     
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
     }
     event.preventDefault();
-
     setValidated(true);
+
+
+    console.log(exerciseName)
+    if((exerciseName != null && duration != null) && (exerciseName != '' && duration != '') ){
+  
     arrofexercises.push(exerciseName);
     arrofdurations.push(duration);
     totalTime = parseInt(totalTime) + parseInt(duration);
-  
+    
+    toast.success("Exercise Added 🦾");
+
+    console.log(arrofexercises);
+    console.log(arrofdurations);
+
+    }
+
   }
 
   const handleSubmit = (event) => {
@@ -56,6 +73,11 @@ export default function ExerciseLog() {
     var thedate = moment(startDate).format('DD/MM/YYYY');
 
     console.log(thedate);
+    console.log(arrofexercises);
+    console.log(arrofdurations);
+
+
+    if (arrofdurations.length>0 && arrofexercises.length>0){
 
     push(ref(db, 'users/' + auth.currentUser.uid), {
         date: thedate,
@@ -63,6 +85,11 @@ export default function ExerciseLog() {
         durations: arrofdurations,
         totalDuration: totalTime
       });
+
+      toast.success("Workout Saved!");
+
+    }
+
       totalTime = 0;
       arrofexercises = [];
       arrofdurations = [];
@@ -88,7 +115,7 @@ export default function ExerciseLog() {
         <h2>Exercise Log</h2>
         </div>
 
-        <Form noValidate validated={validated} onSubmit={handleAdd} >
+        <Form noValidate validated={validated}>
 <div className="mb-3">
         <DatePicker 
         className = "text-center"
@@ -115,6 +142,7 @@ export default function ExerciseLog() {
       type="text"
        className="text-center"
         name="exercise" 
+        defaultValue={null}
         required
         aria-describedby="basic-addon3"  
         value={inputs.exercise || ""} 
@@ -151,6 +179,7 @@ export default function ExerciseLog() {
       Add Exercise
     </Button>
     </Col>
+
 
     <Col>
     <Button variant="primary" type="submit" onClick={handleSubmit}>

@@ -23,6 +23,7 @@ import {
   val,
   forEach,
   onChildAdded,
+  orderByChild,
 } from "firebase/database";
 import TheWorkout from "./TheWorkout";
 
@@ -34,9 +35,11 @@ export default function ViewWorkouts() {
   const WorkoutDisplay = () => {
     const [workout, setWorkout] = useState([]);
     const [nothing, setNothing] = useState([]);
+
+    var arrofworkouts = [];
     useEffect(() => {
       (async () => {
-        const getWorkout = ref(db, "users/" + auth.currentUser.uid);
+        const getWorkout = (ref(db, "users/" + auth.currentUser.uid));
         var thedata;
 
         onValue(getWorkout, (snapshot) => {
@@ -57,6 +60,8 @@ export default function ViewWorkouts() {
       return <p>There are no workouts yet!</p>;
     }
 
+    arrofworkouts.push(workout);
+    console.log(arrofworkouts);
     return workout.map((workoutDetail) => {
       return <TheWorkout thedata={workoutDetail} />;
     });
@@ -67,25 +72,18 @@ export default function ViewWorkouts() {
       <div>
         <TheNavbar />
       </div>
-
-      <Container
-        className="d-flex align-items-center justify-content-center"
-        style={{ minHeight: "100vh" }}
-      >
-        <div>
-          <CardGroup>
-            <Card className="text-center" style={{ width: "20rem" }}>
-              <Card.Body>
-                <div className="w-100 text-center mt-2" m>
+      <div className="w-100 text-center mt-2" m>
                   <h1>Past Workouts</h1>
                 </div>
+      <Container  style={{ width: "20rem" }}>
+        <div>
+      
+               
 
-                <div>
+                <div className="w-100 text-center mt-2" m>
                   <WorkoutDisplay />
                 </div>
-              </Card.Body>
-            </Card>
-          </CardGroup>
+       
         </div>
       </Container>
     </>

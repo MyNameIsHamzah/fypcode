@@ -3,6 +3,8 @@ import { Card, Container, InputGroup, CardGroup, Row } from "react-bootstrap";
 import TheNavbar from "./Navbar";
 import { app, auth } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
+import moment from "moment";
+
 import {
   getDatabase,
   ref,
@@ -12,7 +14,7 @@ import {
   onChildAdded,
 } from "firebase/database";
 import TheWeight from "./TheWeight";
-import { Line, Chart } from 'react-chartjs-2';
+import { Line, Chart} from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto'
 
 export default function WeightProgress() {
@@ -44,6 +46,7 @@ export default function WeightProgress() {
   const WeightDisplay = () => {
     var thedates=[];
     var theweights=[];
+    var newArray=[];
    
     const [weightanddate, setWeightanddate] = useState([]);
     useEffect(() => {
@@ -76,25 +79,90 @@ export default function WeightProgress() {
     weightanddate.map((weightDetail) => {
       thedates.push(weightDetail[1].weightdate)
       theweights.push(weightDetail[1].weight)
+
+
+
     });
 
     console.log(thedates);
     console.log(theweights);
-    return (
+
+   const themap = new Map();
+
+   for(let i = 0; i < thedates.length; i++){
+    themap.set(thedates[i], theweights[i]);
+ };
+  
+   console.log(themap);
+
+   const theArr = [...themap];
+
+   console.log(theArr);
+
+    const sortedArray = theArr.sort(function(a,b) {
+      a = a[0].split('/').reverse().join('');
+      b = b[0].split('/').reverse().join('');
+      return a > b ? 1 : a < b ? -1 : 0;
       
-      <Line
-      datasetIdKey="id"
-      data={{
-        labels: thedates,
+      // return a.localeCompare(b);         // <-- alternative 
+      
+    })
+
+    const sortedMap = new Map(sortedArray);
+    console.log(sortedMap)
+
+    const datespls = Array.from(sortedMap.keys());
+    const weightspls = Array.from(sortedMap.values());
+
+    const data = {
+      labels: datespls,
+        label: "date",
+        
         datasets: [
           {
             id: 1,
-            label: "weight in kg",
-            data: theweights,
+            label: "Weight over time",
+            data: weightspls,
+        
           },
   
-        ],
-      }}
+        ]
+
+    };
+
+  
+      const options = {
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Date'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Weight in kg'
+            }
+          }
+
+        }     
+      }
+    
+    
+
+    return (
+
+     
+      <Line
+
+      data={data}
+
+      options= {options}
+
+      
+
+      
     />
 
 

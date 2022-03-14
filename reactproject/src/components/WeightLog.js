@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Line, Chart } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto'
 setDefaultLocale('enGB')
+toast.configure()
 
 
 var arrofexercises = [];
@@ -46,11 +47,14 @@ export default function WeightLog() {
     if (form.checkValidity() === false) {
       event.stopPropagation();
     }
+    event.preventDefault();
 
     setValidated(true);
 
     console.log(weightdate);
     console.log(weight);
+
+    if((weight != null)&&(weight != '')){
 
     var thedate = moment(startDate).format('DD/MM/YYYY');
        push(ref(db, 'users/' + auth.currentUser.uid + 'weighins/'), {
@@ -58,10 +62,11 @@ export default function WeightLog() {
         weight: weight
       });
 
-      toast.success("Weight Logged!")
+      toast.success("Weight Logged ");
+
 
   }
-
+}
 
   return (
     <>
@@ -99,7 +104,7 @@ export default function WeightLog() {
       <Form.Control type="text" className="text-center" required name="weight" aria-describedby="basic-addon3"  value={inputs.weight || ""} onChange={handleChange} />
       <InputGroup.Text id="basic-addon5">kg</InputGroup.Text>
       <Form.Control.Feedback type="invalid">
-                     Please enter an age
+                     Please enter a weight
                      </Form.Control.Feedback>
       </InputGroup>
 
