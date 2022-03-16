@@ -32,7 +32,6 @@ export default function Dashboard() {
             "rgb(54, 162, 235)",
             "rgb(255, 205, 86)",
             "rgb(000, 000, 000)",
-
           ],
           hoverOffset: 4,
         },
@@ -82,8 +81,6 @@ export default function Dashboard() {
             id="uncontrolled-tab-example"
             className="mb-3"
           >
-        
-
             <Tab eventKey="Modern Day Epidemic" title="Modern Day Epidemic">
               <Col className="text-center">
                 <h4>Modern Day Epidemic</h4>
@@ -154,21 +151,28 @@ export default function Dashboard() {
             id="uncontrolled-tab-example"
             className="mb-3"
           >
-                <Tab eventKey="Recommendation" title="Determining Fitness Goal">
-                <Col className="text-center">
-                  <h4>How To Determine Your Fitness Goal</h4>
-                  <p>
-                  To become a healthier individual, it is VITAL that you understand what you must do in order to achieve your objective.
-                  The <a href="/BMICalculator">BMI Calculator</a> allows you to do this by intaking your height and weight and displaying what your Body Mass Index is. If you fall into the obese/overweight category,
-                  it is suggested that you enter a WEIGHT LOSS/CUTTING phase until your weight has gone into the healthy category within the BMI Calculator. If you fall into the healthy category, it is suggested that you 
-                  maintain your current weight and improve your body composition by entering a MAINTENANCE phase. If you fall into the underweight category on the BMI Calculator. It is advised that you enter a WEIGHT GAIN/BULKING 
-                  phase until your weight is comfortably in the healthy category within the BMI Calculator, which would be a BMI ~22.0. 
-
-                  </p>
-
-                </Col>
-              
-              </Tab>
+            <Tab eventKey="Recommendation" title="Determining Fitness Goal">
+              <Col className="text-center">
+                <h4>How To Determine Your Fitness Goal</h4>
+                <p>
+                  To become a healthier individual, it is VITAL that you
+                  understand what you must do to achieve your objective. The{" "}
+                  <a href="/BMICalculator">BMI Calculator </a>
+                  allows you to do this by intaking your height and weight and
+                  displaying what your Body Mass Index is. If you fall into the
+                  obese/overweight category, it is suggested that you enter a
+                  WEIGHT LOSS/CUTTING phase until your weight has gone into the
+                  healthy category within the BMI Calculator. If you fall into
+                  the healthy category, it is suggested that you maintain your
+                  current weight and improve your body composition by entering a
+                  MAINTENANCE phase. If you fall into the underweight category
+                  on the BMI Calculator. It is advised that you enter a WEIGHT
+                  GAIN/BULKING phase until your weight is comfortably in the
+                  healthy category within the BMI Calculator, which would be a
+                  BMI ~22.0.
+                </p>
+              </Col>
+            </Tab>
 
             <Tab eventKey="Guide to Fat loss" title="Cutting Guide">
               <Col className="text-center">
@@ -218,12 +222,14 @@ export default function Dashboard() {
                       <h4>Weight Training</h4>
                       <p>
                         It is VITAL to follow a weightlifting routine in order
-                        to maintain and preserve muscle mass. 
+                        to maintain and preserve muscle mass.
                         <a
                           href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5946208/"
                           target="_blank"
                           rel="noopener noreferrer"
-                        > A research article
+                        >
+                          {" "}
+                          A research article
                         </a>
                         , by Sardeli et al, concluded that weightlifting
                         preserves roughly 93% of muscle mass in subjects that
@@ -241,8 +247,10 @@ export default function Dashboard() {
                         training splits such as Push/Pull/Legs, Upper/Lower or
                         Full Body. These are all good choices, but it comes down
                         to your lifestyle and how you can fit exercise around
-                        your life. The objective of weight training is to conserve muscle mass. However you may also get stronger over this period. Below are some examples of weightlifitng
-                        training routines that you can follow:{" "}
+                        your life. The objective of weight training is to
+                        conserve muscle mass. However, you may also get stronger
+                        over this period. Below are some examples of
+                        weightlifting training routines that you can follow:
                       </p>
                       <li>
                         <a
@@ -304,56 +312,70 @@ export default function Dashboard() {
               title="Weight Maintenance Guide"
             >
               <Col className="text-center">
-              <Accordion>
+                <Accordion>
                   <Accordion.Item eventKey="0">
                     <Accordion.Header>1. Setting Up The Diet</Accordion.Header>
                     <Accordion.Body>
                       <h4>Caloric Intake</h4>
                       <p>
-                        The first step to undergo a successful maintenance phase,
-                        is to calculate the amount of calories to consume. This 
-                        can be done by using
-                        the <a href="/TDEECalculator">TDEE Calculator</a>, by
+                        The first step to undergo a successful maintenance
+                        phase, is to calculate the amount of calories to
+                        consume. This can be done by using the{" "}
+                        <a href="/TDEECalculator">TDEE Calculator</a>, by
                         entering your weight, height, age, activity level and
                         gender. Different calorie levels will be generated, but
-                        the one to focus on would be the "Maintenance Calories”, as
-                        this would allow you to maintain your weight
+                        the one to focus on would be the "Maintenance Calories”,
+                        as this would allow you to maintain your weight
                         successfully.
                       </p>
                       <p>
                         However, it is CRUCIAL that you are honest in regard to
                         your activity level since most people overestimate how
                         much they workout (i.e. they choose 'Heavy Exercise'
-                        when they should choose 'Light Exercise), which could result
-                        in them gaining weight, as a higher activity level would result 
-                        in a higher maintenance calories. You should use the TDEE calculator as a reasonable
-                        estimate to start with and adjust your calories up or
-                        down based on your weight change over time.
+                        when they should choose 'Light Exercise), which could
+                        result in them gaining weight, as a higher activity
+                        level would result in a higher maintenance calories. You
+                        should use the TDEE calculator as a reasonable estimate
+                        to start with and adjust your calories up or down based
+                        on your weight change over time.
                       </p>
                       <h4>Protein Intake</h4>
                       <p>
                         It is also important to ensure that you consume enough
-                        protein in order to maintain and build muscle. It is vital 
-                        that you consume a sufficient level of protein in
-                        grams per day, which is roughly 2x of your body weight in
-                        kg (e.g. 80kg individual should consume 160g protein per
-                        day).
+                        protein in order to maintain and build muscle. It is
+                        vital that you consume a sufficient level of protein in
+                        grams per day, which is roughly 2x of your body weight
+                        in kg (e.g. 80kg individual should consume 160g protein
+                        per day).
                       </p>
                     </Accordion.Body>
                   </Accordion.Item>
 
                   <Accordion.Item eventKey="1">
-                    <Accordion.Header>2. Training On Maintenance Calories </Accordion.Header>
+                    <Accordion.Header>
+                      2. Training On Maintenance Calories{" "}
+                    </Accordion.Header>
                     <Accordion.Body>
                       <h4>Weight Training</h4>
                       <p>
-                      This type of training at a caloric maintenance allows an individual to improve their body composition, whilst maintaining their weight. For example, if an individuals weights 80kg 
-                      and has a caloric maitenance of 2900kcal, it is very likely that they will consume roughly that amount of calories, by possibly slightly under or over eating, due to slight inaccuracies in calorie tracking. 
-                      This slight unintentional deviation 
-                      leads to some days of being at a caloric surplus or being at a caloric deficit. Being at a deficit allows the body to burn fat for fuel, thus decreasing body weight and making an individual leaner and 
-                      a surplus allows for a stimulus for muscle growth under conditions that the muscles are being stimulated for growth. Thus, allowing an indivudual to achieve both gaining muscle and losing fat simultaneously.
-                       In conclusion, this allows for individuals to improve their body composition once they 
-                      have achieved a healthy and maintainable body weight.
+                        This type of training at a caloric maintenance allows an
+                        individual to improve their body composition, whilst
+                        maintaining their weight. For example, if an individuals
+                        weights 80kg and has a caloric maintenance of 2900kcal,
+                        it is very likely that they will consume roughly that
+                        amount of calories, by possibly slightly under or over
+                        eating, due to slight inaccuracies in calorie tracking.
+                        This slight unintentional deviation leads to some days
+                        of being at a caloric surplus or being at a caloric
+                        deficit. Being at a deficit allows the body to burn fat
+                        for fuel, thus decreasing body weight and making an
+                        individual leaner and a surplus allows for a stimulus
+                        for muscle growth under conditions that the muscles are
+                        being stimulated for growth. Thus, allowing an
+                        individual to achieve both gaining muscle and losing fat
+                        simultaneously. In conclusion, this allows for
+                        individuals to improve their body composition once they
+                        have achieved a healthy and maintainable body weight.
                       </p>
 
                       <h4>Weightlifting Training Routines</h4>
@@ -363,8 +385,8 @@ export default function Dashboard() {
                         training splits such as Push/Pull/Legs, Upper/Lower or
                         Full Body. These are all good choices, but it comes down
                         to your lifestyle and how you can fit exercise around
-                        your life. Below are some examples of weightlifitng
-                        training routines that you can follow:{" "}
+                        your life. Below are some examples of weightlifting
+                        training routines that you can follow:
                       </p>
                       <li>
                         <a
@@ -399,54 +421,56 @@ export default function Dashboard() {
                   <Accordion.Item eventKey="2">
                     <Accordion.Header>3. Expert Advice </Accordion.Header>
                     <Accordion.Body>
-                      <h4>How To Build Muscle And Lose Fat At The Same Time: Step By Step Explained by Nippard</h4>
+                      <h4>
+                        How To Build Muscle And Lose Fat At The Same Time: Step
+                        By Step Explained by Nippard
+                      </h4>
                       <YouTube videoId="M4K0s792wAU" />
                     </Accordion.Body>
                   </Accordion.Item>
-             
                 </Accordion>
-
               </Col>
             </Tab>
 
-            
-            
             <Tab eventKey="Guide to Weight Gain" title="Bulking Guide">
               <Col className="text-center">
-              
                 <Accordion>
                   <Accordion.Item eventKey="0">
                     <Accordion.Header>1. Setting Up The Diet</Accordion.Header>
                     <Accordion.Body>
                       <h4>Caloric Intake</h4>
                       <p>
-                        The first step to undergo a successful bulking phase,
-                        is to calculate the amount of calories to consume. This 
-                        can be done by using
-                        the <a href="/TDEECalculator">TDEE Calculator</a>, by
+                        The first step to undergo a successful bulking phase, is
+                        to calculate the amount of calories to consume. This can
+                        be done by using the{" "}
+                        <a href="/TDEECalculator">TDEE Calculator</a>, by
                         entering your weight, height, age, activity level and
                         gender. Different calorie levels will be generated, but
-                        the one to focus on would be the "Bulking Calories”, as consuming at this calorie level
-                        would allow you to increase your weight and muscle mass, which is the objective of a bulk.
+                        the one to focus on would be the "Bulking Calories”, as
+                        consuming at this calorie level would allow you to
+                        increase your weight and muscle mass, which is the
+                        objective of a bulk.
                       </p>
                       <p>
                         However, it is CRUCIAL that you are honest in regard to
                         your activity level since most people overestimate how
                         much they workout (i.e. they choose 'Heavy Exercise'
-                        when they should choose 'Light Exercise'), which could result
-                        in them gaining too much weight from fat if the activity level was set too high, or not gaining anything if the activity level was set too low. You should use the
-                         TDEE calculator as a reasonable
-                        estimate to start with and adjust your calories up or
-                        down based on your weight change over time.
+                        when they should choose 'Light Exercise'), which could
+                        result in them gaining too much weight from fat if the
+                        activity level was set too high, or not gaining anything
+                        if the activity level was set too low. You should use
+                        the TDEE calculator as a reasonable estimate to start
+                        with and adjust your calories up or down based on your
+                        weight change over time.
                       </p>
                       <h4>Protein Intake</h4>
                       <p>
                         It is also important to ensure that you consume enough
-                        protein in order to maintain and build muscle. It is vital 
-                        that you consume a sufficient level of protein in
-                        grams per day, which is roughly 2x of your body weight in
-                        kg (e.g. 80kg individual should consume 160g protein per
-                        day).
+                        protein in order to maintain and build muscle. It is
+                        vital that you consume a sufficient level of protein in
+                        grams per day, which is roughly 2x of your body weight
+                        in kg (e.g. 80kg individual should consume 160g protein
+                        per day).
                       </p>
                     </Accordion.Body>
                   </Accordion.Item>
@@ -456,10 +480,21 @@ export default function Dashboard() {
                     <Accordion.Body>
                       <h4>Weight Training</h4>
                       <p>
-                      This type of training at a caloric surplus allows an individual to increase their muscle. For example, if an individuals has a "Bulking Calories" of 3000kcal per day, this would be an increase
-                      of 500kcal above their maintenance calories. This will allow the individual to gain weight, as their body has more energy than required for its daily needs. Being in a surplus allows for a
-                       stimulus for muscle growth under conditions that the muscles are being stimulated for growth, which can be achieved through weightlifting. Thus, allowing an indivudual to build muscle size and strength if 
-                       they consume adequate protein and follow a weightlifting routine. Individuals can expect to make muscle size gains as well as strength gains during this bulking phase. 
+                        This type of training at a caloric surplus allows an
+                        individual to increase their muscle. For example, if an
+                        individual has a "Bulking Calories" of 3000kcal per day,
+                        this would be an increase of 500kcal above their
+                        maintenance calories. This will allow the individual to
+                        gain weight, as their body has more energy than required
+                        for its daily needs. Being in a surplus allows for a
+                        stimulus for muscle growth under conditions that the
+                        muscles are being stimulated for growth, which can be
+                        achieved through weightlifting. Thus, allowing an
+                        individual to build muscle size and strength if they
+                        consume adequate protein and follow a weightlifting
+                        routine. Individuals can expect to make muscle size
+                        gains as well as strength gains during this bulking
+                        phase.
                       </p>
 
                       <h4>Weightlifting Training Routines</h4>
@@ -469,8 +504,8 @@ export default function Dashboard() {
                         training splits such as Push/Pull/Legs, Upper/Lower or
                         Full Body. These are all good choices, but it comes down
                         to your lifestyle and how you can fit exercise around
-                        your life. Below are some examples of weightlifitng
-                        training routines that you can follow:{" "}
+                        your life. Below are some examples of weightlifting
+                        training routines that you can follow:
                       </p>
                       <li>
                         <a
@@ -509,19 +544,11 @@ export default function Dashboard() {
                       <YouTube videoId="ZYJqTNvv1Ys" />
                     </Accordion.Body>
                   </Accordion.Item>
-             
                 </Accordion>
-  
-              
-              
               </Col>
             </Tab>
-            
-
-          </Tabs >
-          <div className="mt-2">
-
-          </div>
+          </Tabs>
+          <div className="mt-2"></div>
         </Row>
       </Container>
     </>
