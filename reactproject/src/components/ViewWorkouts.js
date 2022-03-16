@@ -36,7 +36,6 @@ export default function ViewWorkouts() {
     const [workout, setWorkout] = useState([]);
     const [nothing, setNothing] = useState([]);
 
-    var arrofworkouts = [];
     useEffect(() => {
       (async () => {
         const getWorkout = (ref(db, "users/" + auth.currentUser.uid));
@@ -60,8 +59,7 @@ export default function ViewWorkouts() {
       return <p>There are no workouts yet!</p>;
     }
 
-    arrofworkouts.push(workout);
-    console.log(arrofworkouts);
+    
     return workout.map((workoutDetail) => {
       return <TheWorkout thedata={workoutDetail} />;
     });
