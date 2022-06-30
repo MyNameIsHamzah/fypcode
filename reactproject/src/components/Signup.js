@@ -19,6 +19,10 @@ export default function Signup() {
       return setError("Passwords do not match");
     }
 
+    if (String(passwordRef.current.value).length < 6) {
+      return setError("Passwords must be at least 6 characters");
+    }
+
     try {
       setError("");
       setLoading(true);

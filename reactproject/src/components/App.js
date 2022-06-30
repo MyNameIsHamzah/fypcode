@@ -18,6 +18,7 @@ import ViewWorkouts from "./ViewWorkouts";
 import WeightLog from "./WeightLog";
 import WeightProgress from "./WeightProgress";
 import CalorieTracker from "./CalorieTracker";
+import ViewCalorieDiary from "./ViewCalorieDiary";
 
 function App() {
   return (
@@ -74,6 +75,11 @@ function App() {
                 exact path= "/CalorieTracker"
                 component={CalorieTracker}
                 title="Calorie Tracker"
+              />
+              <PrivateRoute
+                exact path= "/ViewCalorieDiary"
+                component={ViewCalorieDiary}
+                title="View Calorie Diary"
               />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <Route path="/signup" component={Signup} title="Signup" />

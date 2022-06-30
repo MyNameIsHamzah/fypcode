@@ -43,10 +43,10 @@ export default function TDEECalculator() {
 
     axios
       .get(
-        `https://fitness-and-health-web-backend.herokuapp.com/api/v1/calculate/TDEE?weight=` +
+        'https://localhost:7262/api/TheController/GetTDEE?heightinM=' + 
+         Height+
+         '&weightinKG='+ 
           Weight +
-          `&height=` +
-          Height +
           `&age=` +
           Age +
           `&gender=` +

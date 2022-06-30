@@ -45,10 +45,10 @@ export default function BMICalculator() {
 
     axios
       .get(
-        `https://fitness-and-health-web-backend.herokuapp.com/api/v1/calculate/BMI?weight=` +
-          Weight +
-          `&height=` +
-          Height
+        'https://localhost:7262/api/TheController/GetBMI?heightinM=' +
+          Height +
+          '&weightinKG=' +
+          Weight
       )
       .then((res) => {
         setApiData(res.data);

@@ -59,9 +59,15 @@ function TheNavbar() {
                   Progress
                 </NavDropdown.Item>
               </NavDropdown>
-
-              <Nav.Link href="/CalorieTracker">Calorie Tracker</Nav.Link>
-
+              <NavDropdown title="Calorie Tracker" id="basic-nav-dropdown3">
+                <NavDropdown.Item href="/CalorieTracker">
+                  Calorie Tracker
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/ViewCalorieDiary">
+                  Calorie Diary
+                </NavDropdown.Item>
+              </NavDropdown>
+              <Nav.Link href="/CalorieTracker"></Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link href="/profile">Profile</Nav.Link>

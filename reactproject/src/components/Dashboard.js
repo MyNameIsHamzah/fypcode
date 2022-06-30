@@ -16,6 +16,7 @@ import TheNavbar from "./Navbar";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import YouTube from "react-youtube";
+import "./styles.css";
 
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
@@ -300,7 +301,9 @@ export default function Dashboard() {
                     <Accordion.Header>3. Expert Advice </Accordion.Header>
                     <Accordion.Body>
                       <h4>The Smartest Way To Get Lean by Nippard et al.</h4>
+                      <div className="video-responsive">
                       <YouTube videoId="d8V9ZaSq9Oc" />
+                      </div>
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
@@ -425,7 +428,9 @@ export default function Dashboard() {
                         How To Build Muscle And Lose Fat At The Same Time: Step
                         By Step Explained by Nippard
                       </h4>
+                      <div className="video-responsive">
                       <YouTube videoId="M4K0s792wAU" />
+                      </div>
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
@@ -541,7 +546,9 @@ export default function Dashboard() {
                     <Accordion.Header>3. Expert Advice </Accordion.Header>
                     <Accordion.Body>
                       <h4>How to Lean Bulk PROPERLY in 5 Steps by Ethier</h4>
+                      <div className="video-responsive">
                       <YouTube videoId="ZYJqTNvv1Ys" />
+                      </div>
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
